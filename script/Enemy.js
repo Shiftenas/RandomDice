@@ -6,6 +6,16 @@ class Enemy {
         this.speed = speed;
     }
 
+    update() {
+        this.pos += this.speed / 10;
+    }
+
+    toPoint() {
+        if (pos < 25) {
+            return []
+        }
+    }
+
     onDeath() {
         
     }
