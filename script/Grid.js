@@ -1,18 +1,20 @@
 class Grid {
-    constructor() {
+    constructor(grid_width, grid_height, ctx) {
         this.money = 100;
         this.nextDice = 10;
         this.grid = []
         this.wave = 1;
         this.enemies = [];
         this.enemyHP = 100;
-        for (let i = 0; i < 3; i ++) {
+        for (let i = 0; i < grid_height; i ++) {
             let row = [];
-            for (let j = 0; j < 5; j ++) {
+            for (let j = 0; j < grid_width; j ++) {
                 row.push(null);
             }
             this.grid.push(row);
         }
+        this.startx = ctx.canvas.width / 2 - (grid_width - 1) * 20;
+        this.starty = ctx.canvas.height - 40 - grid_height * 40;
     }
 
     update() {
@@ -48,6 +50,20 @@ class Grid {
     }
 
     spawnEnemy() {
-        this.enemies.push(new Ennemy(this.enemyHP))
+        this.enemies.push(new Ennemy(this.enemyHP));
+    }
+
+    draw() {
+        let y = this.starty;
+        for (let i = 0; i < this.grid.length; i ++) {
+            let x = this.startx;
+            for (let j = 0; j < this.grid[i].length; j++) {
+                if (this.grid[i][j] != null) {
+                    this.grid[i][j].draw(x, y);
+                }
+                x += 40;
+            }
+            y += 40;
+        }
     }
 }

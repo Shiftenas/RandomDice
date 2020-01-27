@@ -2,6 +2,8 @@ class Wind extends Dice {
     constructor(spot, level) {
         super(spot);
         this.color = "#01ABDF";
+        this.image = new Image()
+        this.image.src = "img/wind.png"
         this.canMerge = {
             Wind : true,
         };
